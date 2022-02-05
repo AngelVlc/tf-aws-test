@@ -42,3 +42,9 @@ AmazonAPIGatewayAdministrator
 
 https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html
 
+
+## Init AWS SAM for GO
+
+```
+sam init --runtime go1.x
+```
