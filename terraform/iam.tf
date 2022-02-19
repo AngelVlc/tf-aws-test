@@ -1,4 +1,4 @@
-resource "aws_iam_role" "lambda_exec" {
+resource "aws_iam_role" "hello_world_lambda_execution_role" {
   name = "serverless_lambda"
   tags = var.additional_tags
   assume_role_policy = jsonencode({
@@ -15,8 +15,8 @@ resource "aws_iam_role" "lambda_exec" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_policy" {
-  role       = aws_iam_role.lambda_exec.name
+resource "aws_iam_role_policy_attachment" "hello_world_lambda_policy" {
+  role       = aws_iam_role.hello_world_lambda_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 

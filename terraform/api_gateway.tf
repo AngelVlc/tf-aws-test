@@ -1,17 +1,17 @@
-resource "aws_apigatewayv2_api" "lambda" {
-  name          = "serverless_lambda_gw"
+resource "aws_apigatewayv2_api" "hello_world_api_gateway" {
+  name          = "lambda_hello_world"
   protocol_type = "HTTP"
   tags          = var.additional_tags
 }
 
-resource "aws_apigatewayv2_stage" "lambda" {
-  api_id = aws_apigatewayv2_api.lambda.id
+resource "aws_apigatewayv2_stage" "production" {
+  api_id = aws_apigatewayv2_api.hello_world_api_gateway.id
 
-  name        = "serverless_lambda_stage"
+  name        = "lambda_hello_world_production_stage"
   auto_deploy = true
 
   access_log_settings {
-    destination_arn = aws_cloudwatch_log_group.api_gw.arn
+    destination_arn = aws_cloudwatch_log_group.hello_world_api_gateway_log_group.arn
 
     format = jsonencode({
       requestId               = "$context.requestId"
@@ -29,17 +29,17 @@ resource "aws_apigatewayv2_stage" "lambda" {
   }
 }
 
-resource "aws_apigatewayv2_integration" "hello_world" {
-  api_id = aws_apigatewayv2_api.lambda.id
+resource "aws_apigatewayv2_integration" "hello_world_api_gateway_integration" {
+  api_id = aws_apigatewayv2_api.hello_world_api_gateway.id
 
   integration_uri    = aws_lambda_function.hello_world_lambda.invoke_arn
   integration_type   = "AWS_PROXY"
   integration_method = "POST"
 }
 
-resource "aws_apigatewayv2_route" "hello_world" {
-  api_id = aws_apigatewayv2_api.lambda.id
+resource "aws_apigatewayv2_route" "hello_world_api_gateway_route" {
+  api_id = aws_apigatewayv2_api.hello_world_api_gateway.id
 
   route_key = "GET /hello"
-  target    = "integrations/${aws_apigatewayv2_integration.hello_world.id}"
+  target    = "integrations/${aws_apigatewayv2_integration.hello_world_api_gateway_integration.id}"
 }
