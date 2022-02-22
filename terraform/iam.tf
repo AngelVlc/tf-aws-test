@@ -15,8 +15,7 @@ resource "aws_iam_role" "hello_world_lambda_execution_role" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "hello_world_lambda_policy" {
+resource "aws_iam_role_policy_attachment" "hello_world_lambda_execution_policy_attachment" {
   role       = aws_iam_role.hello_world_lambda_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
-

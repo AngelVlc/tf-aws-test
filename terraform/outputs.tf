@@ -15,9 +15,3 @@ output "log_group_api_gateway" {
 
   value = aws_cloudwatch_log_group.hello_world_api_gateway_log_group.name
 }
-
-output "log_group_lambda" {
-  description = "Lambda log group"
-
-  value = aws_cloudwatch_log_group.hello_world_lambda_log_group.name
-}
