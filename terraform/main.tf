@@ -2,13 +2,9 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.27"
+      version = "~> 4.5"
     }
 
-    random = {
-      source  = "hashicorp/random"
-      version = "~> 3.1.0"
-    }
     archive = {
       source  = "hashicorp/archive"
       version = "~> 2.2.0"
@@ -26,12 +22,4 @@ terraform {
 
 provider "aws" {
   region = "eu-west-1"
-}
-
-variable "additional_tags" {
-  default = {
-    project = "test"
-  }
-  description = "Additional resource tags"
-  type        = map(string)
 }

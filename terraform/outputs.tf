@@ -13,5 +13,5 @@ output "integration_route" {
 output "log_group_api_gateway" {
   description = "Api Gateway log group"
 
-  value = aws_cloudwatch_log_group.hello_world_api_gateway_log_group.name
+  value = aws_cloudwatch_log_group.api_gateway_log_group.name
 }
